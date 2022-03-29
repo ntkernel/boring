@@ -101,32 +101,6 @@ preloader.nonLinearAdSlotHeight = 400;
 
 function showMyAds() {
 
-    // alert("showMy");
-
-    if (typeof(killads) == 'undefined') {
-        // alert('广告被过滤');
-        console.log("AdNo");
-        adEndComplete = false;
-        var MainManger = __require("MainManage");
-        MainManger.showGameEndLayer();
-    } else {
-
-
-        var winHeight = document.documentElement.clientHeight;
-        // document.getElementById("adContainer").style.height = winHeight-60+"px";
-        if (document.body.clientHeight > 700) {
-            document.getElementById("adContainer").style.height = winHeight - 85 + "px";
-        } else {
-            document.getElementById("adContainer").style.height = winHeight - 65 + "px";
-        }
-
-        document.getElementById("adContainer").style.display = "block";
-        adsLoader.requestAds(preloader);
-
-    }
-
-
-
 
 
 }
@@ -139,36 +113,7 @@ function onAdsManagerLoaded(adsManagerLoadedEvent) {
 
     // document.getElementById("adContainer").style.display = "block";
     // Get the ads manager.
-    adsManager = adsManagerLoadedEvent.getAdsManager(
-        videoContent); // See API reference for contentPlayback
 
-    // Add listeners to the required events.
-    adsManager.addEventListener(
-        google.ima.AdErrorEvent.Type.AD_ERROR,
-        onAdError);
-    adsManager.addEventListener(
-        google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
-        onContentPauseRequested);
-    adsManager.addEventListener(
-        google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
-        onContentResumeRequested);
-
-    var o = document.getElementById("adContainer");
-    var h = o.offsetHeight; //高度
-    var w = o.offsetWidth; //宽度
-    try {
-        // Initialize the ads manager. Ad rules playlist will start at this time.
-        adsManager.init(w, h, google.ima.ViewMode.FULLSCREEN);
-        // Call start to show ads. Single video and overlay ads will
-        // start at this time; this call will be ignored for ad rules, as ad rules
-        // ads start when the adsManager is initialized.
-        adsManager.start();
-    } catch (adError) {
-
-        // An error may be thrown if there was a problem with the VAST response.
-        // Play content here, because we won't be getting an ad.
-        // videoContent.play();
-    }
 }
 
 function onContentPauseRequested() {
